@@ -7,6 +7,26 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="com-springsource-repository-bundles-external" />
+      <option name="name" value="EBR External Release" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="java-net-public" />
+      <option name="name" value="Java Net Public" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="codelds" />
+      <option name="name" value="codelds" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="redhat-techpreview-all-repository" />
+      <option name="name" value="Red Hat Tech Preview repository (all)" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
@@ -15,6 +35,26 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="com-springsource-repository-bundles-release" />
+      <option name="name" value="EBR Spring Release" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="repository-apache-org" />
+      <option name="name" value="Apache Repository" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss-public-repository" />
+      <option name="name" value="JBoss Public" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://registry-lvm-utility.test.autentica.lv/repository/maven-public/" />
     </remote-repository>
   </component>
 </project>

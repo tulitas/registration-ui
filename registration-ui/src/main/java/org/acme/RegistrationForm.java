@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -38,6 +39,7 @@ public class RegistrationForm implements Serializable {
     @Length(min = 5, max = 20)
     private String email;
     private boolean registered;
+    private List users;
 
     public void register() {
         LOG.debug("registering {}", name);
@@ -58,6 +60,24 @@ public class RegistrationForm implements Serializable {
         surname = null;
         email = null;
         registered = false;
+    }
+
+    public String navigateToUserListPage() {
+        LOG.debug("HELLO");
+        return "/users-list.xhtml";
+    }
+    public void users(){
+        LOG.debug("HELLOooo");
+        users = registrationClient.getAllRegistrations();
+
+    }
+
+    public List getUsers() {
+        return users;
+    }
+
+    public void setUsers(List users) {
+        this.users = users;
     }
 
     public String getName() {
