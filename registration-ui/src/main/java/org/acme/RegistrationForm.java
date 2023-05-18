@@ -61,9 +61,8 @@ public class RegistrationForm implements Serializable {
         email = null;
         registered = false;
     }
-
     public String navigateToUserListPage() {
-        LOG.debug("HELLO");
+        System.out.println("HELLo page");
         return "/users-list.xhtml";
     }
     public void users(){
