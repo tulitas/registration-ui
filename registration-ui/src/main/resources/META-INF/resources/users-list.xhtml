@@ -4,13 +4,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       lang="en">
 <h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <title><ui:insert name="title">Registration</ui:insert></title>
+    <title>
+        <ui:insert name="title">Registration</ui:insert>
+    </title>
     <h:outputStylesheet name="/webjars/primeflex/3.3.0/primeflex.min.css"/>
     <h:outputStylesheet name="/webjars/primeflex/3.3.0/themes/saga-blue.css"/>
     <ui:insert name="head"/>
@@ -18,23 +21,25 @@
 
 <body>
 
-<div class="max-w-30rem mx-auto lg:mt-8 md:mt-4">
-<p:dataTable var="user"
-             value="#{registrationForm.users}"
-             emptyMessage="No users found">
-    <p:column headerText="Name">
-        #{user.name}
-    </p:column>
-    <p:column headerText="Surname">
-        #{user.surname}
-    </p:column>
-    <p:column headerText="Email">
-        #{user.email}
-    </p:column>
-</p:dataTable>
-<p:button id="back" value="Back"
-          outcome="index"
-          styleClass="m-2 ui-button-help"/>
+<div class="max-w-2xl mx-auto lg:mt-8 md:mt-4">
+    <f:event type="preRenderView" listener="#{registrationForm.getTableData()}" />
+    <p:dataTable var="user"
+                 value="#{registrationForm.allUsers}"
+                 emptyMessage="No users found"
+                 styleClass="border-1">
+        <p:column headerText="Name">
+            #{user.name}
+        </p:column>
+        <p:column headerText="Surname">
+            #{user.surname}
+        </p:column>
+        <p:column headerText="Email">
+            #{user.email}
+        </p:column>
+    </p:dataTable>
+    <p:button id="back" value="Back"
+              outcome="index"
+              styleClass="m-2 ui-button-help"/>
 </div>
 </body>
 </html>

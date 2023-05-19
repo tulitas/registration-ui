@@ -74,6 +74,10 @@
             <artifactId>primeflex</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-mailer</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -13,11 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
 @ViewScoped
 public class RegistrationForm implements Serializable {
+    private List<Users> allUsers = new ArrayList<>();
+
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationForm.class);
     @Inject
     @RestClient
@@ -39,7 +42,6 @@ public class RegistrationForm implements Serializable {
     @Length(min = 5, max = 20)
     private String email;
     private boolean registered;
-    private List users;
 
     public void register() {
         LOG.debug("registering {}", name);
@@ -62,21 +64,30 @@ public class RegistrationForm implements Serializable {
         registered = false;
     }
     public String navigateToUserListPage() {
-        System.out.println("HELLo page");
         return "/users-list.xhtml";
     }
-    public void users(){
-        LOG.debug("HELLOooo");
-        users = registrationClient.getAllRegistrations();
 
+    public List<Users> getTableData() {
+        List<Users> resultList = registrationClient.getUsers();
+
+        for (Users registration : resultList) {
+            Users user = new Users();
+            user.setName(registration.getName());
+            user.setSurname(registration.getSurname());
+            user.setEmail(registration.getEmail());
+
+            allUsers.add(user);
+        }
+
+        return allUsers;
     }
 
-    public List getUsers() {
-        return users;
+    public List<Users> getAllUsers() {
+        return allUsers;
     }
 
-    public void setUsers(List users) {
-        this.users = users;
+    public void setAllUsers(List<Users> allUsers) {
+        this.allUsers = allUsers;
     }
 
     public String getName() {

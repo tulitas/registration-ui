@@ -16,7 +16,7 @@ public interface RegistrationClient {
     void register(RegistrationDTO registration);
 
     @GET
-    @Path("/all")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    List<RegistrationDTO> getAllRegistrations();
+    List<Users> getUsers();
 }
