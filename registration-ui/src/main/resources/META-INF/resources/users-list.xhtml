@@ -20,29 +20,33 @@
 </h:head>
 
 <body>
-<h:form>
-<div class="max-w-2xl mx-auto lg:mt-8 md:mt-4">
-    <f:event type="preRenderView" listener="#{registrationForm.getTableData()}" />
-    <p:dataTable var="user"
-                 value="#{registrationForm.allUsers}"
-                 emptyMessage="No users found"
-                 styleClass="border-1">
-        <p:column headerText="Name">
-            #{user.name}
-        </p:column>
-        <p:column headerText="Surname">
-            #{user.surname}
-        </p:column>
-        <p:column headerText="Email">
-            #{user.email}
-        </p:column>
-    </p:dataTable>
-    <p:button id="back" value="Back"
-              outcome="index"
-              styleClass="m-2 ui-button-help"/>
-        <p:commandButton id="sendButton" value="Send Email" action="#{mailService.send}" process="@this"/>
+<h:form id="formId">
+    <div class="max-w-2xl mx-auto lg:mt-8 md:mt-4">
+        <f:event type="preRenderView" listener="#{registrationForm.getTableData()}" />
+        <p:dataTable id="dataTableId" var="userItem" value="#{registrationForm.allUsers}" emptyMessage="No users found" styleClass="border-1">
+            <p:column headerText="Name">
+                #{userItem.name}
+            </p:column>
+            <p:column headerText="Surname">
+                #{userItem.surname}
+            </p:column>
+            <p:column headerText="Email">
+                #{userItem.email}
+            </p:column>
+            <p:column style="width: 24px">
+                <p:selectBooleanCheckbox value="#{userItem.selectedUser}" />
+            </p:column>
+        </p:dataTable>
 
-</div>
+        <p:button id="back" value="Back" outcome="index" styleClass="m-2 ui-button-help"/>
+        <p:commandButton id="sendButton" value="Send Email" actionListener="#{mailService.send}" process="@form">
+            <p:ajax update="@form" />
+        </p:commandButton>
+    </div>
 </h:form>
+
+
+
+
 </body>
 </html>

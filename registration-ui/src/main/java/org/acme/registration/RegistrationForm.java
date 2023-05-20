@@ -2,6 +2,7 @@ package org.acme.registration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -20,12 +21,15 @@ import java.util.List;
 @Named
 @ViewScoped
 public class RegistrationForm implements Serializable {
-    private List<Users> allUsers = new ArrayList<>();
+    private List<Users> allUsers;
 
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationForm.class);
     @Inject
     @RestClient
     transient RegistrationClient registrationClient;
+
+    private Long id;
+
     @Inject
     ObjectMapper mapper;
     @NotNull
@@ -42,7 +46,15 @@ public class RegistrationForm implements Serializable {
     @NotBlank
     @Length(min = 5, max = 20)
     private String email;
+
     private boolean registered;
+
+    @PostConstruct
+    public void init() {
+        allUsers = registrationClient.getUsers();
+    }
+
+
 
     public void register() {
         LOG.debug("registering {}", name);
@@ -70,18 +82,38 @@ public class RegistrationForm implements Serializable {
 
     public List<Users> getTableData() {
         List<Users> resultList = registrationClient.getUsers();
-
         for (Users registration : resultList) {
-            Users user = new Users();
+            Users user = findUserById(registration.getId());
+            if (user == null) {
+                user = new Users();
+                allUsers.add(user);
+            }
             user.setId(registration.getId());
             user.setName(registration.getName());
             user.setSurname(registration.getSurname());
             user.setEmail(registration.getEmail());
-
-            allUsers.add(user);
+            user.setSelectedUser(registration.isSelectedUser());
         }
+        allUsers.stream().forEach(x -> System.out.println("ALL USERS " + " " + x.isSelectedUser() + " " + x.getName()));
 
         return allUsers;
+    }
+
+    private Users findUserById(Long id) {
+        for (Users user : allUsers) {
+            if (user.getId().equals(id)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Users> getAllUsers() {
