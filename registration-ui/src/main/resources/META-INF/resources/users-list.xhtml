@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title>
-        <ui:insert name="title">Registration</ui:insert>
+        <ui:insert name="title">Users list</ui:insert>
     </title>
     <h:outputStylesheet name="/webjars/primeflex/3.3.0/primeflex.min.css"/>
     <h:outputStylesheet name="/webjars/primeflex/3.3.0/themes/saga-blue.css"/>
@@ -20,7 +20,7 @@
 </h:head>
 
 <body>
-
+<h:form>
 <div class="max-w-2xl mx-auto lg:mt-8 md:mt-4">
     <f:event type="preRenderView" listener="#{registrationForm.getTableData()}" />
     <p:dataTable var="user"
@@ -40,6 +40,9 @@
     <p:button id="back" value="Back"
               outcome="index"
               styleClass="m-2 ui-button-help"/>
+        <p:commandButton id="sendButton" value="Send Email" action="#{mailService.send}" process="@this"/>
+
 </div>
+</h:form>
 </body>
 </html>

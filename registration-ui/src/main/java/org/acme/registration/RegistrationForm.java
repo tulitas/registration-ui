@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.registration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.acme.users.Users;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.hibernate.validator.constraints.Length;
 import org.slf4j.Logger;
@@ -72,6 +73,7 @@ public class RegistrationForm implements Serializable {
 
         for (Users registration : resultList) {
             Users user = new Users();
+            user.setId(registration.getId());
             user.setName(registration.getName());
             user.setSurname(registration.getSurname());
             user.setEmail(registration.getEmail());
