@@ -24,6 +24,7 @@ public class Users {
         this.selectedUser = selectedUser;
     }
 
+
     public Map<Integer, Boolean> getCheckboxValues() {
         return checkboxValues;
     }

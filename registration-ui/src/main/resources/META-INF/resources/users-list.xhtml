@@ -22,8 +22,8 @@
 <body>
 <h:form id="formId">
     <div class="max-w-2xl mx-auto lg:mt-8 md:mt-4">
-        <f:event type="preRenderView" listener="#{registrationForm.getTableData()}" />
-        <p:dataTable id="dataTableId" var="userItem" value="#{registrationForm.allUsers}" emptyMessage="No users found" styleClass="border-1">
+        <f:event type="preRenderView" listener="#{usersList.getTableData()}" />
+        <p:dataTable id="dataTableId" var="userItem" value="#{usersList.tableData}" emptyMessage="No users found" styleClass="border-1">
             <p:column headerText="Name">
                 #{userItem.name}
             </p:column>
@@ -39,7 +39,7 @@
         </p:dataTable>
 
         <p:button id="back" value="Back" outcome="index" styleClass="m-2 ui-button-help"/>
-        <p:commandButton id="sendButton" value="Send Email" actionListener="#{mailService.send}" process="@form">
+        <p:commandButton id="sendButton" value="Send Email" actionListener="#{usersList.send}" process="@form">
             <p:ajax update="@form" />
         </p:commandButton>
     </div>

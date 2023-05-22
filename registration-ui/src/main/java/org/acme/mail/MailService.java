@@ -15,21 +15,14 @@ import java.util.List;
 @ApplicationScoped
 
 public class MailService {
-    @ManagedProperty("#{registrationForm}")
+    @ManagedProperty("#{usersList}")
     private RegistrationForm registrationForm;
     @Inject
     @RestClient
     transient MailClient mailClient;
-    public void send(){
-        List<Users> selectedUsers = new ArrayList<>();
-        for (Users user : registrationForm.getAllUsers()) {
-            System.out.println(user.isSelectedUser() + " " + user.getId());
-            if (user.isSelectedUser()) {
-                System.out.println(selectedUsers);
-                selectedUsers.add(user);
-            }
-        }
+    public void send(Users user){
 
-//        mailClient.send();
+
+        mailClient.send(user);
     }
 }

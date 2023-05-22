@@ -80,34 +80,6 @@ public class RegistrationForm implements Serializable {
         return "/users-list.xhtml";
     }
 
-    public List<Users> getTableData() {
-        List<Users> resultList = registrationClient.getUsers();
-        for (Users registration : resultList) {
-            Users user = findUserById(registration.getId());
-            if (user == null) {
-                user = new Users();
-                allUsers.add(user);
-            }
-            user.setId(registration.getId());
-            user.setName(registration.getName());
-            user.setSurname(registration.getSurname());
-            user.setEmail(registration.getEmail());
-            user.setSelectedUser(registration.isSelectedUser());
-        }
-        allUsers.stream().forEach(x -> System.out.println("ALL USERS " + " " + x.isSelectedUser() + " " + x.getName()));
-
-        return allUsers;
-    }
-
-    private Users findUserById(Long id) {
-        for (Users user : allUsers) {
-            if (user.getId().equals(id)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
     public Long getId() {
         return id;
     }
